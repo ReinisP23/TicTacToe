@@ -58,6 +58,7 @@ namespace TicTacToe
             {
                 labelText = "label" + i;
                 Grid.Controls[labelText].Text = string.Empty;
+                Grid.Controls[labelText].BackColor = Color.Coral;
             }
         }
         private void CheckWin()
@@ -76,9 +77,50 @@ namespace TicTacToe
                 GameOver();
             }
         }
+        private void ChangeWinColor()
+        {
+            if (label1.Text == label2.Text && label2.Text == label3.Text && label1.Text != string.Empty)
+            {
+                ChangeColor(label1, label2, label3, Color.Red);
+            }
+            else if (label4.Text == label5.Text && label5.Text == label6.Text && label4.Text != string.Empty)
+            {
+                ChangeColor(label4, label5, label6, Color.Red);
+            }
+            else if (label7.Text == label8.Text && label8.Text == label9.Text && label7.Text != string.Empty)
+            {
+                ChangeColor(label7, label8, label9, Color.Red);
+            }
+            else if (label1.Text == label4.Text && label4.Text == label7.Text && label1.Text != string.Empty)
+            {
+                ChangeColor(label1, label4, label7, Color.Red);
+            }
+            else if (label2.Text == label5.Text && label5.Text == label8.Text && label2.Text != string.Empty)
+            {
+                ChangeColor(label2, label5, label8, Color.Red);
+            }
+            else if (label3.Text == label6.Text && label6.Text == label9.Text && label3.Text != string.Empty)
+            {
+                ChangeColor(label3, label6, label9, Color.Red);
+            }
+            else if (label1.Text == label5.Text && label5.Text == label9.Text && label1.Text != string.Empty)
+            {
+                ChangeColor(label1, label5, label9, Color.Red);
+            }
+            else if (label3.Text == label5.Text && label5.Text == label7.Text && label3.Text != string.Empty)
+            {
+                ChangeColor(label3, label5, label7, Color.Red);
+            }
+        }
+        private void ChangeColor(Label labelOne, Label labelTwo, Label labelThree, Color color)
+        {
+            labelOne.BackColor = color;
+            labelTwo.BackColor = color;
+            labelThree.BackColor = color;
+        }
         private void CheckDraw()
         {
-            if (turnCount == 9)
+            if (turnCount == 10)
             {
                 MessageBox.Show("Draw!");
                 RestartGame();
@@ -101,6 +143,7 @@ namespace TicTacToe
             {
                 winner = "O";
             }
+            ChangeWinColor();
             MessageBox.Show(winner + " wins!");
             RestartGame();
         }
